@@ -163,7 +163,7 @@ struct ipc_client *ipc_client_create(int type)
     if (type < 0 || type > IPC_CLIENT_TYPE_RFS)
         return NULL;
 
-    rc = ipc_device_detect();
+    rc = 10; //ipc_device_detect();
     if (rc < 0)
         goto error;
 
