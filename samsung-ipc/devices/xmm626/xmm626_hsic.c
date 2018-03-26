@@ -357,19 +357,27 @@ int xmm626_hsic_command_send(int device_fd, unsigned short code,
         goto error;
 
     rc = read(device_fd, &header, sizeof(header));
-    if (rc < (int) sizeof(header))
+    if (rc < (int) sizeof(header)) {
+	    printf("got no header\n");
         goto error;
+    }
 
     rc = select(device_fd + 1, &fds, NULL, NULL, &timeout);
-    if (rc <= 0)
+    if (rc <= 0) {
+	    printf("select failed\n");
         goto error;
+    }
 
     rc = read(device_fd, buffer, command_data_size);
-    if (rc < (int) command_data_size)
+    if (rc < (int) command_data_size) {
+	    printf("not enough read\n");
         goto error;
+    }
 
-    if (header.code != code)
+    if (header.code != code) {
+	    printf("header code mismatch");
         goto error;
+    }
 
     rc = 0;
     goto complete;

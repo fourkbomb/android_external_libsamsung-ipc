@@ -32,7 +32,7 @@
 #define N7100_NV_DATA_OFFSET                                    0xA00000
 #define N7100_NV_DATA_SIZE                                      0x200000
 
-#define N7100_MODEM_IMAGE_DEVICE                "/dev/block/mmcblk0p10"
+#define N7100_MODEM_IMAGE_DEVICE                "/dev/disk/by-partlabel/RADIO"
 
 struct n7100_transport_data {
     int fd;

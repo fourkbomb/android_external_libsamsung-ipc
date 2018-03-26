@@ -20,14 +20,18 @@
 #ifndef __XMM626_SEC_MODEM_H__
 #define __XMM626_SEC_MODEM_H__
 
-#define XMM626_SEC_MODEM_BOOT0_DEVICE           "/dev/umts_boot0"
+#define XMM626_SEC_MODEM_BOOT0_DEVICE           "/dev/xmm6262_boot0"
 #define XMM626_SEC_MODEM_BOOT1_DEVICE           "/dev/umts_boot1"
 #define XMM626_SEC_MODEM_IPC0_DEVICE            "/dev/umts_ipc0"
 #define XMM626_SEC_MODEM_RFS0_DEVICE            "/dev/umts_rfs0"
 #define XMM626_SEC_MODEM_LINK_PM_DEVICE         "/dev/link_pm"
-#define XMM626_SEC_MODEM_EHCI_POWER_SYSFS       "/sys/devices/platform/s5p-ehci/ehci_power"
-#define XMM626_SEC_MODEM_OHCI_POWER_SYSFS       "/sys/devices/platform/s5p-ohci/ohci_power"
-
+#define XMM626_SEC_MODEM_EHCI_POWER_SYSFS       "/sys/devices/platform/soc/12580000.ehci/ehci_power"
+#define XMM626_SEC_HOSTWAKE_PATH                "/sys/devices/platform/xmm6262/hostwake"
+#define XMM626_SEC_LINK_ACTIVE_PATH		"/sys/devices/platform/xmm6262/link_active"
+#define XMM626_SEC_MODEM_POWER_PATH 		"/sys/devices/platform/xmm6262/modem_power"
+#define XMM626_SEC_MODEM_PDA_ACTIVE_SYSFS	"/sys/devices/platform/xmm6262/pda_active"
+#define XMM626_SEC_MODEM_SLAVEWAKE_SYSFS	"/sys/devices/platform/xmm6262/slavewake"
+//#define XMM626_SEC_MODEM_OHCI_POWER_SYSFS       "/sys/devices/platform/s5p-ohci/ohci_power"
 #define XMM626_SEC_MODEM_GPRS_IFACE_PREFIX      "rmnet"
 #define XMM626_SEC_MODEM_GPRS_IFACE_COUNT                       3
 
