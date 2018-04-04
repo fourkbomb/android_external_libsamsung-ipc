@@ -18,6 +18,7 @@
  * along with libsamsung-ipc.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include <errno.h>
 #include <stdlib.h>
 #include <stdio.h>
 #include <unistd.h>
@@ -410,17 +411,24 @@ complete:
 
 int xmm626_sec_modem_open(int type)
 {
-    int fd;
+    int fd = -1, i;
 
-    switch (type) {
-        case IPC_CLIENT_TYPE_FMT:
-            fd = open(XMM626_SEC_MODEM_IPC0_DEVICE, O_RDWR | O_NOCTTY | O_NONBLOCK);
-            break;
-        case IPC_CLIENT_TYPE_RFS:
-            fd = open(XMM626_SEC_MODEM_RFS0_DEVICE, O_RDWR | O_NOCTTY | O_NONBLOCK);
-            break;
-        default:
-            return -1;
+    while (fd < 0 && i < 30) {
+	    i++;
+	    usleep(30000);
+	    switch (type) {
+		case IPC_CLIENT_TYPE_FMT:
+		    printf("%s: %d %d\n", XMM626_SEC_MODEM_IPC0_DEVICE, fd, errno);
+		    fd = open(XMM626_SEC_MODEM_IPC0_DEVICE, O_RDWR | O_NOCTTY | O_NONBLOCK);
+		    break;
+		case IPC_CLIENT_TYPE_RFS:
+		    fd = open(XMM626_SEC_MODEM_RFS0_DEVICE, O_RDWR | O_NOCTTY | O_NONBLOCK);
+		    printf("%s: %d %d\n", XMM626_SEC_MODEM_RFS0_DEVICE, fd, errno);
+		    break;
+		default:
+		    printf("unknown type\n");
+		    return -1;
+	    }
     }
 
     return fd;

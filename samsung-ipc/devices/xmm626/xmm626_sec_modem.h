@@ -22,8 +22,8 @@
 
 #define XMM626_SEC_MODEM_BOOT0_DEVICE           "/dev/xmm6262_boot0"
 #define XMM626_SEC_MODEM_BOOT1_DEVICE           "/dev/umts_boot1"
-#define XMM626_SEC_MODEM_IPC0_DEVICE            "/dev/umts_ipc0"
-#define XMM626_SEC_MODEM_RFS0_DEVICE            "/dev/umts_rfs0"
+#define XMM626_SEC_MODEM_IPC0_DEVICE            "/dev/umts_ipc"
+#define XMM626_SEC_MODEM_RFS0_DEVICE            "/dev/umts_rfs"
 #define XMM626_SEC_MODEM_LINK_PM_DEVICE         "/dev/link_pm"
 #define XMM626_SEC_MODEM_EHCI_POWER_SYSFS       "/sys/devices/platform/soc/12580000.ehci/ehci_power"
 #define XMM626_SEC_HOSTWAKE_PATH                "/sys/devices/platform/xmm6262/hostwake"
