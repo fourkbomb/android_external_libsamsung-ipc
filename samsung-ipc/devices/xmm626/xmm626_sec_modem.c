@@ -452,10 +452,6 @@ int xmm626_sec_modem_read(int fd, void *buffer, size_t length)
     if (fd < 0 || buffer == NULL || length <= 0)
         return -1;
 
-    status = ioctl(fd, IOCTL_MODEM_STATUS, 0);
-    if (status != STATE_ONLINE && status != STATE_BOOTING)
-        return -1;
-
     rc = read(fd, buffer, length);
 
     return rc;
@@ -463,14 +459,9 @@ int xmm626_sec_modem_read(int fd, void *buffer, size_t length)
 
 int xmm626_sec_modem_write(int fd, const void *buffer, size_t length)
 {
-    int status;
     int rc;
 
     if (fd < 0 || buffer == NULL || length <= 0)
-        return -1;
-
-    status = ioctl(fd, IOCTL_MODEM_STATUS, 0);
-    if (status != STATE_ONLINE && status != STATE_BOOTING)
         return -1;
 
     rc = write(fd, buffer, length);

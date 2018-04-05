@@ -21,6 +21,7 @@
 #include <unistd.h>
 #include <string.h>
 #include <fcntl.h>
+#include <poll.h>
 #include <sys/mman.h>
 
 #include <samsung-ipc.h>
@@ -299,15 +300,20 @@ int n7100_poll(void *data, struct ipc_poll_fds *fds, struct timeval *timeout)
 {
     struct n7100_transport_data *transport_data;
     int rc;
+    struct pollfd fd;
 
     if (data == NULL)
         return -1;
 
     transport_data = (struct n7100_transport_data *) data;
 
-    rc = xmm626_sec_modem_poll(transport_data->fd, fds, timeout);
+    fd.fd = transport_data->fd;
+    fd.events = POLLRDNORM | POLLIN;
 
-    return rc;
+    rc = poll(&fd, 1, -1);
+
+    printf("poll returns %d\n", rc);
+    return rc - 1;
 }
 
 int n7100_power_on(void *data)
